@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CountryList from "./CountryList";
-import SearchBar from "./SearchBar";
+import CountryList from "../components/CountryList";
+import SearchBar from "../components/SearchBar";
+import Filter from "../components/Filter";
 
 const Countries = () => {
   const [countries, setCountries] = useState({
@@ -19,6 +20,7 @@ const Countries = () => {
     region: "",
   });
 
+  //traigo la api y guardo en csearch
   useEffect(() => {
     axios.get(`https://restcountries.eu/rest/v2/all`).then((res) => {
       setSearch(
@@ -33,6 +35,7 @@ const Countries = () => {
     });
   }, [setSearch]);
 
+  //asigno a countries lo guardado de la api
   useEffect(() => {
     setCountries(csearch);
   }, [csearch]);
@@ -40,6 +43,8 @@ const Countries = () => {
   return (
     <div className="cointainer-countries">
       <SearchBar search={csearch} setCountryList={setCountries} />
+
+      <Filter search={csearch} setCountryList={setCountries} />
 
       <CountryList countries={countries} />
     </div>

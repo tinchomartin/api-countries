@@ -1,16 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ContainerCard(props) {
   const countries = props.countries;
 
   return (
     <div>
-      {countries.length > 0 &&
-        countries
-          .map((country, i) => {
+      {
+        countries.length > 0 &&
+          countries.map((country, i) => {
             return (
               <div className="card-country" key={i}>
-                <img src={country.flag} alt="country-flag" />
+                <Link to={`/search/${country.name}`}>
+                  <img src={country.flag} alt="country-flag" />
+                </Link>
+
                 <p>{country.name}</p>
                 <ul className="card-list">
                   <li>Population: {country.population}</li>
@@ -20,7 +24,8 @@ export default function ContainerCard(props) {
               </div>
             );
           })
-          .splice(0, 10)}
+        // .splice(0, 20)
+      }
     </div>
   );
 }
