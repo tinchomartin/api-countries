@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function Country() {
   let { country } = useParams();
+  let history = useHistory();
 
   const [countryName, setCountry] = useState({});
 
@@ -13,8 +14,16 @@ export default function Country() {
       .then((res) => setCountry(res.data[0]));
   }, [country]);
 
+  const handleClick = (e) => {
+    history.push("/");
+  };
+
   return (
     <div className="country-card">
+      <button className="btn-back" onClick={handleClick}>
+        Go Back
+      </button>
+
       <img src={countryName.flag} alt="" />
       <p>{countryName.name}</p>
       <p>Native Name: {countryName.nativeName}</p>
