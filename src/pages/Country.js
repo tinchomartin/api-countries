@@ -13,7 +13,6 @@ export default function Country() {
       .then((res) => setCountry(res.data[0]));
   }, [country]);
 
-  console.log(countryName);
   return (
     <div className="country-card">
       <img src={countryName.flag} alt="" />
@@ -23,10 +22,29 @@ export default function Country() {
       <p>Sub Region: {countryName.subregion}</p>
       <p>Capital: {countryName.capital}</p>
       <p>Top Level Domain: {countryName.topLevelDomain}</p>
-      {/* <p>Languages: {countryName.languages }</p> */}
+
+      <p>
+        Languages:{" "}
+        {countryName.languages &&
+          countryName.languages
+            .map((item, i) => {
+              return `${item.name}`;
+            })
+            .join(", ")}
+      </p>
       <p>Population: {countryName.population}</p>
 
-      {/* <p className="borders">Border Countries: {countryName.borders}</p> */}
+      <p className="borders">
+        Border Countries:{" "}
+        {countryName.borders &&
+          countryName.borders.map((item, i) => {
+            return (
+              <button className="btn-border" key={i}>
+                {item}
+              </button>
+            );
+          })}
+      </p>
     </div>
   );
 }
