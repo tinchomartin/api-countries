@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
+import "./Country.css";
+import BorderNames from "./../components/BorderName";
 
 export default function Country() {
   let { country } = useParams();
@@ -10,8 +12,8 @@ export default function Country() {
 
   useEffect(() => {
     axios
-      .get(`https://restcountries.eu/rest/v2/name/${country}`)
-      .then((res) => setCountry(res.data[0]));
+      .get(`https://restcountries.eu/rest/v2/alpha/${country}`)
+      .then((res) => setCountry(res.data));
   }, [country]);
 
   const handleClick = (e) => {
@@ -19,41 +21,55 @@ export default function Country() {
   };
 
   return (
-    <div className="country-card">
+    <div className="country-page">
       <button className="btn-back" onClick={handleClick}>
         Go Back
       </button>
+      <div className="country-card">
+        <div className="flag">
+          <img src={countryName.flag} alt="" />
+        </div>
+        <div className="description-card">
+          <h1>{countryName.name}</h1>
+          <div className="description">
+            <p>
+              <span>Native Name:</span> {countryName.nativeName}
+            </p>
+            <p>
+              <span>Region:</span> {countryName.region}
+            </p>
+            <p>
+              <span>Sub Region:</span> {countryName.subregion}
+            </p>
+            <p>
+              <span>Capital:</span> {countryName.capital}
+            </p>
+            <p>
+              <span>Top Level Domain:</span> {countryName.topLevelDomain}
+            </p>
 
-      <img src={countryName.flag} alt="" />
-      <p>{countryName.name}</p>
-      <p>Native Name: {countryName.nativeName}</p>
-      <p>Region: {countryName.region}</p>
-      <p>Sub Region: {countryName.subregion}</p>
-      <p>Capital: {countryName.capital}</p>
-      <p>Top Level Domain: {countryName.topLevelDomain}</p>
-
-      <p>
-        Languages:{" "}
-        {countryName.languages &&
-          countryName.languages
-            .map((item, i) => {
-              return `${item.name}`;
-            })
-            .join(", ")}
-      </p>
-      <p>Population: {countryName.population}</p>
-
-      <p className="borders">
-        Border Countries:{" "}
-        {countryName.borders &&
-          countryName.borders.map((item, i) => {
-            return (
-              <button className="btn-border" key={i}>
-                {item}
-              </button>
-            );
-          })}
-      </p>
+            <p>
+              <span>Languages:</span>{" "}
+              {countryName.languages &&
+                countryName.languages
+                  .map((item, i) => {
+                    return `${item.name}`;
+                  })
+                  .join(", ")}
+            </p>
+            <p>
+              <span>Population:</span> {countryName.population}
+            </p>
+          </div>
+          <p className="borders">
+            <span>Border Countries:</span>
+            {countryName.borders &&
+              countryName.borders.map((item, i) => {
+                return <BorderNames border={item} />;
+              })}
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

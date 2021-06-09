@@ -26,6 +26,7 @@ const Countries = () => {
       setSearch(
         res.data.map((country) => ({
           name: country.name,
+          alpha3Code: country.alpha3Code,
           flag: country.flag,
           capital: country.capital,
           population: country.population,

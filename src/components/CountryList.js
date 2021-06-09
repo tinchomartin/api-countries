@@ -11,7 +11,7 @@ export default function ContainerCard(props) {
           countries.map((country, i) => {
             return (
               <div className="card-countryList" key={i}>
-                <Link to={`/search/${country.name}`}>
+                <Link to={`/search/${country.alpha3Code}`}>
                   <img src={country.flag} alt="country-flag" />
                 </Link>
 
