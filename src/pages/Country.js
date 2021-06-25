@@ -61,13 +61,15 @@ export default function Country() {
               <span>Population:</span> {countryName.population}
             </p>
           </div>
+          <div className="wrap-borders">
           <p className="borders">
-            <span>Border Countries:</span>
+            Border Countries:
+            </p>
             {countryName.borders &&
               countryName.borders.map((item, i) => {
                 return <BorderNames border={item} />;
               })}
-          </p>
+          </div>
         </div>
       </div>
     </div>

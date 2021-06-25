@@ -5,13 +5,18 @@ import axios from "axios";
 
 export default function BorderNames(props) {
   let { border } = props;
-  const [nameBorder, setNameBorder] = useState();
+  const [nameBorder, setNameBorder] = useState({
+    name:"",
+    alpha3Code:""
+  });
+let country = nameBorder
+
 
   useEffect(() => {
     axios
       .get(`https://restcountries.eu/rest/v2/alpha/${border}`)
-      .then((res) => setNameBorder(res.data.name));
+      .then((res) => setNameBorder(res.data));
   }, [border]);
-
-  return <Link>{nameBorder}</Link>;
+console.log(country)
+  return <Link to={`/search/${country.alpha3Code}`}>{country.name}</Link>;
 }

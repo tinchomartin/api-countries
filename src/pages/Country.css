@@ -24,12 +24,18 @@
 
 .description-card {
   width: 50%;
-  align-self: center;
+  align-self: flex-start;
   text-align: start;
 }
 
 .flag {
   align-self: flex-start;
+}
+
+img{
+  height: auto;
+  width: 100%;
+
 }
 
 .description {
@@ -44,16 +50,26 @@
   margin: 0 0 0.8rem 0;
 }
 
-span {
+.wrap-borders{
+  width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.borders, span {
   font-weight: 900;
 }
 
-.borders {
-  display: flex;
+a{
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
+  padding: .2rem 1.5rem;
+  text-decoration: none;
 }
 
-.borders a {
-  border: solid 1px black;
+a:active,a:visited{
+  color:inherit
+}
+
+.borders,a {
   margin: 0.3rem;
-  padding: 0.2rem 1.5rem;
 }
