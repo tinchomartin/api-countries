@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CountryList from "../components/CountryList";
-import SearchBar from "../components/SearchBar";
-import Filter from "../components/Filter";
+import CountryList from "../../components/CountryList";
+import SearchBar from "../../components/SearchBar";
+import Filter from "../../components/Filter";
+import "./Homepage.css";
 
 const Countries = () => {
   const [countries, setCountries] = useState({
@@ -42,7 +43,7 @@ const Countries = () => {
   }, [csearch]);
 
   return (
-    <div className="cointainer-countries">
+    <div className="container-countries">
       <SearchBar search={csearch} setCountryList={setCountries} />
 
       <Filter search={csearch} setCountryList={setCountries} />

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import "./Country.css";
-import BorderNames from "./../components/BorderName";
+import BorderNames from "../../components/BorderName";
 
 export default function Country() {
   let { country } = useParams();
@@ -22,9 +22,9 @@ export default function Country() {
 
   return (
     <div className="country-page">
-      <button className="btn-back" onClick={handleClick}>
+      <Link className="btn-back" onClick={handleClick}>
         Go Back
-      </button>
+      </Link>
       <div className="country-card">
         <div className="flag">
           <img src={countryName.flag} alt="" />
@@ -62,9 +62,7 @@ export default function Country() {
             </p>
           </div>
           <div className="wrap-borders">
-          <p className="borders">
-            Border Countries:
-            </p>
+            <p className="borders">Border Countries:</p>
             {countryName.borders &&
               countryName.borders.map((item, i) => {
                 return <BorderNames border={item} />;
