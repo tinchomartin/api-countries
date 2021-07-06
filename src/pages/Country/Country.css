@@ -58,12 +58,13 @@ span {
   font-weight: 800;
 }
 
-a {
+.shadow {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 8px 0px;
   padding: 0.2rem 1.5rem;
   text-decoration: none;
 }
 
+a,
 a:active,
 a:visited {
   color: inherit;
@@ -76,4 +77,8 @@ a {
 
 .btn-back {
   margin-top: 75px;
+}
+
+.fa-long-arrow-alt-left {
+  margin-right: 0.35rem;
 }

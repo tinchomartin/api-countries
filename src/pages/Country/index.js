@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
 import "./Country.css";
-import BorderNames from "../../components/BorderName";
+import BorderNames from "../.././components/BorderName";
 
 export default function Country() {
   let { country } = useParams();
@@ -22,8 +22,9 @@ export default function Country() {
 
   return (
     <div className="country-page">
-      <Link className="btn-back" onClick={handleClick}>
-        Go Back
+      <Link className="btn-back shadow" onClick={handleClick}>
+        <i class="fas fa-long-arrow-alt-left"></i>
+        Back
       </Link>
       <div className="country-card">
         <div className="flag">

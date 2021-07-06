@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import CountryList from "../../components/CountryList";
-import SearchBar from "../../components/SearchBar";
-import Filter from "../../components/Filter";
+import CountryList from "../.././components/CountryList";
+import SearchBar from "../.././components/SearchBar";
+import Filter from "../.././components/Filter";
 import "./Homepage.css";
 
 const Countries = () => {
