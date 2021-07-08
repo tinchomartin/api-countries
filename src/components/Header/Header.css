@@ -17,3 +17,8 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+
+.fa-moon,
+.fa-sun {
+  margin: 0.3rem 0.3rem 0 0;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../Button";
 import "./Header.css";
 
 export default function Header() {
@@ -6,7 +7,7 @@ export default function Header() {
     <header>
       <div className="header-wraper">
         <h1>Where in the World?</h1>
-        <button>Change Theme</button>
+        <Button />
       </div>
     </header>
   );
