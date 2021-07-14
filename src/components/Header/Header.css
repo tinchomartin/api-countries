@@ -18,7 +18,6 @@ button {
   cursor: pointer;
 }
 
-.fa-moon,
-.fa-sun {
+svg {
   margin: 0.3rem 0.3rem 0 0;
 }
