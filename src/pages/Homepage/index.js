@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CountryList from "../.././components/CountryList";
-import SearchBar from "../.././components/SearchBar";
+import SearchB from "../.././components/SearchB";
 import Filter from "../.././components/Filter";
 import "./Homepage.css";
-
+import { Flex } from "@chakra-ui/react";
 const Countries = () => {
   const [countries, setCountries] = useState({
     name: "",
@@ -44,10 +44,10 @@ const Countries = () => {
 
   return (
     <div className="container-countries">
-      <SearchBar search={csearch} setCountryList={setCountries} />
-
-      <Filter search={csearch} setCountryList={setCountries} />
-
+      <Flex justifyContent="space-between">
+        <SearchB search={csearch} setCountryList={setCountries} />
+        <Filter search={csearch} setCountryList={setCountries} />
+      </Flex>
       <CountryList countries={countries} />
     </div>
   );
