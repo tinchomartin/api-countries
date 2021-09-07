@@ -1,21 +1,29 @@
-import React, { useContext } from "react";
-import ThemeContext from "../../utils/context";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMoon, faSun } from "@fortawesome/free-solid-svg-icons";
+import { useColorMode } from "@chakra-ui/react";
+import { Box, Button } from "@chakra-ui/react";
 
-export function Button() {
-  const { theme, handleChangeTheme } = useContext(ThemeContext);
+export default function ButtonTheme() {
+  const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <div>
-      <button
-        onClick={handleChangeTheme}
-        style={{ background: theme.background, color: theme.foreground }}
+    <Box>
+      <Button
+        onClick={toggleColorMode}
+        border="none"
+        backgroundColor=" transparent"
+        cursor="pointer"
+        _focus={{ outline: "none", backgroundColor: "transparent" }}
+        _hover={{ backgroundColor: "transparent" }}
+        _active={{ backgroundColor: "transparent" }}
       >
-        <FontAwesomeIcon icon={theme.icon} />
-        Change Theme
-      </button>
-    </div>
+        <FontAwesomeIcon icon={colorMode === "light" ? faMoon : faSun} />
+
+        <Box as="span" ml="0.3rem">
+          Change Theme
+        </Box>
+      </Button>
+    </Box>
   );
 }
-
-export default Button;

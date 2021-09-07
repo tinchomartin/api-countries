@@ -70,11 +70,6 @@ a:visited {
   color: inherit;
 }
 
-.borders,
-a {
-  margin: 0.3rem;
-}
-
 .btn-back {
   margin-top: 75px;
 }
