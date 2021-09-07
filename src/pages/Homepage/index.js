@@ -4,7 +4,7 @@ import CountryList from "../.././components/CountryList";
 import SearchB from "../.././components/SearchB";
 import Filter from "../.././components/Filter";
 import "./Homepage.css";
-import { Flex } from "@chakra-ui/react";
+import { Box, Flex } from "@chakra-ui/react";
 const Countries = () => {
   const [countries, setCountries] = useState({
     name: "",
