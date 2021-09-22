@@ -11,15 +11,16 @@ import {
 
 export default function ContainerCard(props) {
   const countries = props.countries;
-
-  return (
-    // <div>
-    <Grid templateColumns="repeat(4,minmax(200px,1fr))" gap={16} p="40px 45px">
-      {
-        countries.length > 0 &&
+  if (countries > 0) {
+    return (
+      <Grid
+        templateColumns="repeat(4,minmax(200px,1fr))"
+        gap={16}
+        p="40px 45px"
+      >
+        {countries.length > 0 &&
           countries.map((country, i) => {
             return (
-              // <div className="card-countryList" key={i}>
               <GridItem
                 boxShadow="rgb(0 0 0 / 10%) 0px 0px 8px"
                 borderRadius="5px"
@@ -45,12 +46,26 @@ export default function ContainerCard(props) {
                   <ListItem>Capital: {country.capital} </ListItem>
                 </UnorderedList>
               </GridItem>
-              // </div>
             );
-          })
-        // .splice(0, 20)
-      }
-    </Grid>
-    // </div>
+          })}
+      </Grid>
+    );
+  }
+  return (
+    <Box
+      textAlign="center"
+      display="flex"
+      flexDirection="column"
+      justifyContent="center"
+      p="40px 45px"
+    >
+      <Box as="p">Looks like we have lost our flags :(</Box>
+      <Box as="p">Please try again later</Box>
+
+      <Image
+        src="https://i.pinimg.com/originals/04/b5/ca/04b5caa25bbc28f06bf2fb2efaeefd10.gif"
+        alignSelf="center"
+      ></Image>
+    </Box>
   );
 }
