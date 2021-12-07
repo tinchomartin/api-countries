@@ -20,25 +20,21 @@ const SearchB = (props) => {
   return (
     <div>
       <Stack spacing={4}>
-        <InputGroup width="15.625rem" marginLeft="5rem">
+        <InputGroup
+          width="15.625rem"
+          // marginLeft={{ sm: "5rem" }}
+        >
           <InputLeftElement
             pointerEvents="none"
             children={<SearchIcon color="gray.300" />}
           />
           <Input
             type="text"
-            placeholder="Buscar un país"
+            placeholder="Search for a country"
             onChange={handleChange}
           />
         </InputGroup>
       </Stack>
-
-      {/* <input
-        type="text"
-        placeholder="Busque un país"
-        
-        className="SearchBar"
-      /> */}
     </div>
   );
 };

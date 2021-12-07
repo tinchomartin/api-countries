@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useHistory, Link } from "react-router-dom";
 import axios from "axios";
-// import "./Country.css";
 import BorderNames from "../.././components/BorderName";
-import { Box, Image, Text, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Image,
+  Text,
+  Heading,
+  useColorModeValue,
+  Grid,
+} from "@chakra-ui/react";
 import { ArrowBackIcon } from "@chakra-ui/icons";
 
 export default function Country() {
@@ -12,9 +18,11 @@ export default function Country() {
 
   const [countryName, setCountry] = useState({});
 
+  const bg = useColorModeValue("gray.200", "gray.700");
+
   useEffect(() => {
     axios
-      .get(`https://restcountries.eu/rest/v2/alpha/${country}`)
+      .get(`https://restcountries.com/v2/alpha/${country}`)
       .then((res) => setCountry(res.data));
   }, [country]);
 
@@ -27,49 +35,51 @@ export default function Country() {
       <Link onClick={handleClick}>
         <Box
           as="span"
-          marginTop="75px"
           boxShadow="rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
-          padding="0.2rem 1.5rem"
+          padding="0.5rem 1.5rem"
           text-decoration="none"
+          bg={bg}
         >
           <ArrowBackIcon
-            marginRight="0.30rem"
-            marginBottom=".19rem"
+            marginRight={{ sm: "0.30rem" }}
+            marginBottom={{ sm: ".19rem" }}
           ></ArrowBackIcon>
           Back
         </Box>
       </Link>
       <Box
         display="flex"
-        flexFlow="row"
+        flexDirection={{ base: "column", sm: "row" }}
         height="100%"
         width="100%"
         marginTop="32px"
-        justifyContent="space-between"
+        justifyContent={{ sm: "space-between" }}
+        alignContent={{ base: "center" }}
       >
-        <Box alignSelf="flex-start">
+        <Box alignSelf="flex-start" marginRight="20px">
           <Image
             src={countryName.flag}
             alt="Bandera de pais"
-            height="auto"
-            width="100%"
-            maxWidth="700px"
+            w="100%"
+            maxWidth="550px"
+            objectFit="cover"
           />
         </Box>
         <Box
-          width="50%"
-          alignSelf="flex-start"
+          width={{ sm: "50%" }}
+          alignSelf="center"
           textAlign="start"
           fontSize=" 16px"
         >
-          <Heading as="h4" size="md">
+          <Heading as="h4" size="md" marginBottom="35px">
             {countryName.name}
           </Heading>
-          <Box display="flex" flexFlow="column" flexWrap="wrap" height="150px">
+
+          <Grid templateRows={{ base: "1fr" }}>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Native Name:
-              </Box>{" "}
+              </Box>
               {countryName.nativeName}
             </Text>
             <Text m="0 0 0.8rem 0">
@@ -111,19 +121,36 @@ export default function Country() {
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Population:
-              </Box>{" "}
+              </Box>
               {countryName.population}
             </Text>
-          </Box>
-          <Box width="100%" display="flex" flexWrap="wrap">
+          </Grid>
+
+          <Grid
+            templateRows={{ base: "1fr", sm: "1fr" }}
+            // templateColumns={{ sm: "1fr" }}
+            gap={2}
+          >
             <Text className="borders" fontWeight="700">
+              Border Countries:
+            </Text>
+            <Box display="flex" flexWrap="wrap">
+              {countryName.borders &&
+                countryName.borders.map((item, i) => {
+                  return <BorderNames border={item} bg={bg} />;
+                })}
+            </Box>
+          </Grid>
+
+          {/* <Box width="100%" flexWrap="wrap" display="flex" marginTop="35px">
+            <Text className="borders" fontWeight="700" marginRight="7.5px">
               Border Countries:
             </Text>
             {countryName.borders &&
               countryName.borders.map((item, i) => {
-                return <BorderNames border={item} />;
+                return <BorderNames border={item} bg={bg} />;
               })}
-          </Box>
+          </Box> */}
         </Box>
       </Box>
     </Box>
