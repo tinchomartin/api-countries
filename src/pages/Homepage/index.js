@@ -23,7 +23,7 @@ const Countries = () => {
   //traigo la api y guardo en csearch
   useEffect(() => {
     axios
-      .get(`https://restcountries.eu/rest/v2/all`)
+      .get(`https://restcountries.com/v2/all`)
       .then((res) => {
         setSearch(
           res.data.map((country) => ({
@@ -48,7 +48,13 @@ const Countries = () => {
 
   return (
     <Box textAlign="center">
-      <Flex justifyContent="space-between">
+      <Flex
+        flexDirection={{ base: "column", sm: "row" }}
+        justifyContent="space-between"
+        margin="0 110px"
+        alignItems={{ base: "center" }}
+        height={{ base: "110px" }}
+      >
         <SearchB search={csearch} setCountryList={setCountries} />
         <Filter search={csearch} setCountryList={setCountries} />
       </Flex>

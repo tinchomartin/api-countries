@@ -27,7 +27,7 @@ const Filter = (props) => {
         onChange={handleChange}
         variant="filled"
         width="15.625rem"
-        marginRight="5rem"
+        marginRight={{ sm: "5rem" }}
       >
         {regions.map((region, i) => {
           return (

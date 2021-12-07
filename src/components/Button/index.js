@@ -20,7 +20,7 @@ export default function ButtonTheme() {
       >
         <FontAwesomeIcon icon={colorMode === "light" ? faMoon : faSun} />
 
-        <Box as="span" ml="0.3rem">
+        <Box as="span" ml="0.3rem" fontSize={{ base: "15px", sm: "16px" }}>
           Change Theme
         </Box>
       </Button>
