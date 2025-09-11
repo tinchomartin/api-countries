@@ -29,7 +29,7 @@ const Countries = () => {
           res.data.map((country) => ({
             name: country.name,
             alpha3Code: country.alpha3Code,
-            flag: country.flag,
+            flag: country.flags.png,
             capital: country.capital,
             population: country.population,
             region: country.region,
@@ -53,7 +53,7 @@ const Countries = () => {
         <Filter search={csearch} setCountryList={setCountries} />
       </Flex>
       <CountryList countries={countries} />
-    </Box>
+       </Box>
   );
 };
 

@@ -10,7 +10,7 @@ const SearchB = (props) => {
 
     setCountryList(
       search.filter((country) =>
-        country.name.toLowerCase().includes(val.toLocaleLowerCase())
+        country.name.common.toLowerCase().includes(val.toLocaleLowerCase())
       )
     );
 

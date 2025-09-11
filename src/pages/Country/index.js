@@ -14,7 +14,7 @@ export default function Country() {
 
   useEffect(() => {
     axios
-      .get(`https://restcountries.eu/rest/v2/alpha/${country}`)
+      .get(`https://restcountries.com/v3.1/alpha/${country}`)
       .then((res) => setCountry(res.data));
   }, [country]);
 

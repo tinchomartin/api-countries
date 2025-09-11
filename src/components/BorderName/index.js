@@ -14,7 +14,7 @@ export default function BorderNames(props) {
 
   useEffect(() => {
     axios
-      .get(`https://restcountries.eu/rest/v2/alpha/${border}`)
+      .get(`https://restcountries.eu/rest/v3.1/alpha/${border}`)
       .then((res) => setNameBorder(res.data));
   }, [border]);
   return (

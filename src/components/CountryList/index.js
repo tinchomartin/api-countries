@@ -11,42 +11,58 @@ import {
 
 export default function ContainerCard(props) {
   const countries = props.countries;
-  if (countries > 0) {
+
+  if (countries.length > 0) {
     return (
       <Grid
-        templateColumns="repeat(4,minmax(200px,1fr))"
-        gap={16}
-        p="40px 45px"
+        templateColumns={{
+        base: "repeat(1, 1fr)", // 1 columna en móviles
+        sm: "repeat(2, 1fr)",   // 2 columnas en pantallas pequeñas
+        md: "repeat(3, 1fr)",   // 3 en pantallas medianas
+        lg: "repeat(4, 1fr)",   // 4 en desktop
+      }}
+        gap={8}
+        p={4}
+        alignItems="stretch"
+
       >
         {countries.length > 0 &&
           countries.map((country, i) => {
             return (
-              <GridItem
+                          <GridItem
                 boxShadow="rgb(0 0 0 / 10%) 0px 0px 8px"
                 borderRadius="5px"
                 overflow="hidden"
                 textAlign="left"
-              >
-                <Box width="100%" height="50%">
-                  <Link to={`/search/${country.alpha3Code}`}>
+                display="flex"
+                flexDirection="column"
+                 transition="transform 0.2s"
+                _hover={{ transform: "scale(1.02)" }}             >
+                <Box width="100%" height={{ base: "160px", md: "200px" }} bg="gray.100">
+                  
+                
+                  <Link to={`/search/${country.alpha}`}>
                     <Image
                       src={country.flag}
-                      alt="country-flag"
+                      alt={country.flags?.alt}
                       objectFit="cover"
                       objectPosition="center"
                       width="100%"
                       height="100%"
-                    />
+                        />
                   </Link>
                 </Box>
+                
                 <UnorderedList styleType="none" p={2}>
-                  <ListItem fontWeight="bold">{country.name}</ListItem>
+                  <ListItem fontWeight="bold">{country.name.common}</ListItem>
                   <ListItem>Population: {country.population}</ListItem>
                   <ListItem>Region: {country.region} </ListItem>
                   <ListItem>Capital: {country.capital} </ListItem>
                 </UnorderedList>
+                
               </GridItem>
             );
+           
           })}
       </Grid>
     );
