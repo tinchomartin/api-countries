@@ -10,7 +10,7 @@ export default function Country() {
   let { country } = useParams();
   let history = useHistory();
 
-  const [countryName, setCountry] = useState({});
+  const [countryName, setCountry] = useState([]);
 
   useEffect(() => {
     axios
@@ -22,15 +22,22 @@ export default function Country() {
     history.push("/");
   };
 
+  if (!countryName.length) {
+    return <Box p="3rem">Cargando...</Box>;
+  }
+
+const data = countryName[0];
   return (
-    <Box p="0 3rem">
+    
+    <Box p="0 3rem" key = {country}>
       <Link onClick={handleClick}>
         <Box
           as="span"
           marginTop="75px"
           boxShadow="rgba(0, 0, 0, 0.1) 0px 0px 8px 0px"
           padding="0.2rem 1.5rem"
-          text-decoration="none"
+          textDecoration="none"
+          
         >
           <ArrowBackIcon
             marginRight="0.30rem"
@@ -49,7 +56,7 @@ export default function Country() {
       >
         <Box alignSelf="flex-start">
           <Image
-            src={countryName.flag}
+            src={data.flags.png}
             alt="Bandera de pais"
             height="auto"
             width="100%"
@@ -63,69 +70,64 @@ export default function Country() {
           fontSize=" 16px"
         >
           <Heading as="h4" size="md">
-            {countryName.name}
+            {data.name.official}
           </Heading>
           <Box display="flex" flexFlow="column" flexWrap="wrap" height="150px">
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Native Name:
               </Box>{" "}
-              {countryName.nativeName}
+              {Object.values(data.name.nativeName)[0].official}
             </Text>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Region:
               </Box>{" "}
-              {countryName.region}
+              {data.region}
             </Text>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Sub Region:
               </Box>{" "}
-              {countryName.subregion}
+              {data.subregion}
             </Text>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Capital:
               </Box>{" "}
-              {countryName.capital}
+              {data.capital}
             </Text>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Top Level Domain:
               </Box>{" "}
-              {countryName.topLevelDomain}
+              {data.tld}
             </Text>
 
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Languages:
-              </Box>
-              {countryName.languages &&
-                countryName.languages
-                  .map((item, i) => {
-                    return `${item.name}`;
-                  })
-                  .join(", ")}
+              </Box> {" "}
+              {data?.languages &&
+              Object.values(data.languages).join(", ")}
             </Text>
             <Text m="0 0 0.8rem 0">
               <Box as="span" fontWeight="700">
                 Population:
               </Box>{" "}
-              {countryName.population}
+              {data.population}
             </Text>
           </Box>
           <Box width="100%" display="flex" flexWrap="wrap">
             <Text className="borders" fontWeight="700">
               Border Countries:
             </Text>
-            {countryName.borders &&
-              countryName.borders.map((item, i) => {
-                return <BorderNames border={item} />;
+            {data.borders && Object.values(data.borders).map((item, i) => {
+                return <BorderNames border={item} alphaCode={data.cca2}/>;
               })}
           </Box>
         </Box>
       </Box>
     </Box>
-  );
+    );
 }

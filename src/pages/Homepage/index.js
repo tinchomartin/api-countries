@@ -23,12 +23,12 @@ const Countries = () => {
   //traigo la api y guardo en csearch
   useEffect(() => {
     axios
-      .get(`https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,alpha`)
+      .get(`https://restcountries.com/v3.1/all?fields=name,flags,population,region,capital,cca2`)
       .then((res) => {
         setSearch(
           res.data.map((country) => ({
             name: country.name,
-            alpha3Code: country.alpha3Code,
+            alpha3Code: country.cca2,
             flag: country.flags.png,
             capital: country.capital,
             population: country.population,

@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState,useEffect} from "react";
 import { Link } from "react-router-dom";
 import {
   Box,
@@ -11,6 +11,15 @@ import {
 
 export default function ContainerCard(props) {
   const countries = props.countries;
+
+const [showError, setShowError] = useState(false)
+
+useEffect(()=>{
+const timer = setTimeout(()=>{
+setShowError(true)
+},2)
+return()=>clearTimeout(timer)
+},[])
 
   if (countries.length > 0) {
     return (
@@ -30,6 +39,7 @@ export default function ContainerCard(props) {
           countries.map((country, i) => {
             return (
                           <GridItem
+                key={i}
                 boxShadow="rgb(0 0 0 / 10%) 0px 0px 8px"
                 borderRadius="5px"
                 overflow="hidden"
@@ -41,7 +51,7 @@ export default function ContainerCard(props) {
                 <Box width="100%" height={{ base: "160px", md: "200px" }} bg="gray.100">
                   
                 
-                  <Link to={`/search/${country.alpha}`}>
+                  <Link to={`/search/${country.alpha3Code}`}>
                     <Image
                       src={country.flag}
                       alt={country.flags?.alt}
@@ -67,8 +77,12 @@ export default function ContainerCard(props) {
       </Grid>
     );
   }
+
   return (
+    <>
+    {showError ? (
     <Box
+    
       textAlign="center"
       display="flex"
       flexDirection="column"
@@ -82,6 +96,8 @@ export default function ContainerCard(props) {
         src="https://i.pinimg.com/originals/04/b5/ca/04b5caa25bbc28f06bf2fb2efaeefd10.gif"
         alignSelf="center"
       ></Image>
-    </Box>
+    </Box>)
+     : null}
+     </>
   );
 }
